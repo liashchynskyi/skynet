@@ -1,2 +1,2 @@
 # skynet
-JavaScript implementation of simple multilayer perceptron (MLP)
+JavaScript implementation of simple **multilayer perceptron (MLP)**.
