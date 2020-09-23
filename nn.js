@@ -57,17 +57,16 @@ export class NeuralNetwork {
             let output_layer_activated = output_layer_linear.map(v => this.activation(v, false));
             // Compute output error
             let output_error = subtract(target, output_layer);
-            // Backpropagation of the output error to the hidden layer 
+            // Backpropagation of the output error to the output layer 
             let output_delta = dotMultiply(output_error, multiply(hidden_layer_activated, this.weight1).map(v => this.activation(v, true)));            
-            let hidden_error = multiply(output_delta, transpose(this.synapse1));
-            // Backpropagation of the hidden layer error to the input layer
-            let hidden_delta = dotMultiply(hidden_error, hidden_layer_linear.map(v => this.activation(v, true)));
             // Adjust weights of the output layer
             this.synapse1 = add(this.synapse1, multiply(transpose(hidden_layer_activated), multiply(output_delta, this.lr)));
+            // Backpropagation of the output layer error to the hidden layer
+            let hidden_error = multiply(output_delta, transpose(this.synapse1));
+            let hidden_delta = dotMultiply(hidden_error, hidden_layer_linear.map(v => this.activation(v, true)));
             // Adjust weights of the hidden layer
             this.synapse0 = add(this.synapse0, multiply(transpose(input_layer), multiply(hidden_delta, this.lr)));
-            this.output = output_layer;
-
+            this.output = output_layer_activated;
             // Show error progression
             if (i % 10000 == 0)
                 console.log(`Error: ${mean(abs(output_error))}`);
