@@ -74,8 +74,8 @@ export class NeuralNetwork {
     }
     predict(input) {
         let input_layer = input;
-        let hidden_layer = multiply(input_layer, this.synapse0).map(v => this.activation(v, false));
-        let output_layer = multiply(hidden_layer, this.synapse1).map(v => this.activation(v, false));
-        return output_layer;
+        let hidden_layer_activated = multiply(input_layer, this.synapse0).map(v => this.activation(v, false));
+        let output_layer_activated = multiply(hidden_layer_activated, this.synapse1).map(v => this.activation(v, false));
+        return output_layer_activated;
     }
 }
