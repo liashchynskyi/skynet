@@ -1,6 +1,6 @@
 import {random, multiply, dotMultiply, mean, abs, subtract, transpose, add} from './mathjs'
 import * as activation from './activations'
-// Original work by Liashchynskyi inspired by andrew Trask with small improvments by Claude Coulombe
+// Original work in JavaScript by Petro Liashchynskyi inspired by Andrew Trask with small improvements by Claude Coulombe
  
 export class NeuralNetwork {
     constructor(...args) {
