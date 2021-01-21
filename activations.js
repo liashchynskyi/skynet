@@ -1,4 +1,6 @@
-import {exp, e, pow, log} from 'mathjs'
+// import {exp, e, pow, log} from 'mathjs'
+import pkg from 'mathjs';
+const {exp, e, pow, log} = pkg;
 
 export function sigmoid(x, derivative) {
 	let fx = 1 / (1 + exp(-x));

@@ -1,5 +1,7 @@
-import {random, multiply, dotMultiply, mean, abs, subtract, transpose, add} from './mathjs'
-import * as activation from './activations'
+// import {random, multiply, dotMultiply, mean, abs, subtract, transpose, add} from 'mathjs'
+import pkg from 'mathjs';
+const {random, multiply, dotMultiply, mean, abs, subtract, transpose, add} = pkg;
+import * as activation from './activations.js'
 // Original work in JavaScript by Petro Liashchynskyi inspired by Andrew Trask with small improvements by Claude Coulombe
  
 export class NeuralNetwork {
@@ -56,9 +58,9 @@ export class NeuralNetwork {
             let output_layer_linear = multiply(hidden_layer_activated, this.synapse1)
             let output_layer_activated = output_layer_linear.map(v => this.activation(v, false));
             // Compute output error
-            let output_error = subtract(target, output_layer);
+            let output_error = subtract(target, output_layer_activated);
             // Backpropagation of the output error to the output layer 
-            let output_delta = dotMultiply(output_error, multiply(hidden_layer_activated, this.weight1).map(v => this.activation(v, true)));            
+            let output_delta = dotMultiply(output_error, multiply(hidden_layer_activated, this.synapse1).map(v => this.activation(v, true)));            
             // Adjust weights of the output layer
             this.synapse1 = add(this.synapse1, multiply(transpose(hidden_layer_activated), multiply(output_delta, this.lr)));
             // Backpropagation of the output layer error to the hidden layer
