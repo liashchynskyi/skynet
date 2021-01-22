@@ -11,4 +11,4 @@ JavaScript implementation of simple **multilayer perceptron (MLP)**.
 * Article: https://dev.to/liashchynskyi/creating-of-neural-network-using-javascript-in-7minutes-o21
 * Explanation of math behind it: https://dev.to/liashchynskyi/how-neural-network-works-lets-figure-it-out-32o0
 * Inspiration: Andrew Trask - A Neural Network in 11 lines of Python - https://iamtrask.github.io/2015/07/12/basic-python-network/
-* Improvements: Claude Coulombe - Montréal
+* Improvements: Claude COULOMBE - Montréal
