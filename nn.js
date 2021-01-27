@@ -46,13 +46,15 @@ export class NeuralNetwork {
     train(input, target) {
         for (let i = 0; i < this.epochs; i++) {
             let input_layer = input;
-            let hidden_layer = multiply(input_layer, this.synapse0).map(v => this.activation(v, false));
-            let output_layer = multiply(hidden_layer, this.synapse1).map(v => this.activation(v, false));
+            let hidden_layer_logits = multiply(input_layer, this.synapse0);
+            let hidden_layer_activated = hidden_layer_logits.map(v => this.activation(v, false)
+            let output_layer_logits = multiply(hidden_layer, this.synapse1);
+            let output_layer_activated = output_layer_logits..map(v => this.activation(v, false))
 
-            let output_error = subtract(target, output_layer);
-            let output_delta = dotMultiply(output_error, output_layer.map(v => this.activation(v, true)));
+            let output_error = subtract(target, output_layer_activated);
+            let output_delta = dotMultiply(output_error, output_layer_logits.map(v => this.activation(v, true)));
             let hidden_error = multiply(output_delta, transpose(this.synapse1));
-            let hidden_delta = dotMultiply(hidden_error, hidden_layer.map(v => this.activation(v, true)));
+            let hidden_delta = dotMultiply(hidden_error, hidden_layer_logits.map(v => this.activation(v, true)));
                 
             this.synapse1 = add(this.synapse1, multiply(transpose(hidden_layer), multiply(output_delta, this.lr)));
             this.synapse0 = add(this.synapse0, multiply(transpose(input_layer), multiply(hidden_delta, this.lr)));
