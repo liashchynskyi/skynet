@@ -49,7 +49,7 @@ export class NeuralNetwork {
             let hidden_layer_logits = multiply(input_layer, this.synapse0);
             let hidden_layer_activated = hidden_layer_logits.map(v => this.activation(v, false)
             let output_layer_logits = multiply(hidden_layer, this.synapse1);
-            let output_layer_activated = output_layer_logits..map(v => this.activation(v, false))
+            let output_layer_activated = output_layer_logits.map(v => this.activation(v, false))
 
             let output_error = subtract(target, output_layer_activated);
             let output_delta = dotMultiply(output_error, output_layer_logits.map(v => this.activation(v, true)));
